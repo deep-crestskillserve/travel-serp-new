@@ -1,0 +1,219 @@
+2025-08-25 17:46:25,251 - __main__ - INFO - Loading environment variables
+2025-08-25 17:46:26,499 - __main__ - INFO - Setting up LangGraph
+2025-08-25 17:46:26,504 - __main__ - INFO - Adding nodes to graph
+2025-08-25 17:46:26,510 - __main__ - INFO - Adding edges to graph
+2025-08-25 17:46:26,513 - __main__ - INFO - Compiling LangGraph with memory
+2025-08-25 17:46:30,176 - __main__ - INFO - Launching Gradio UI
+2025-08-25 17:46:30,778 - __main__ - INFO - Generated new thread ID: d441382e-d2d7-4f2d-8a72-9ecc107f4262
+2025-08-25 17:46:30,802 - __main__ - INFO - Setting up Gradio event handlers
+2025-08-25 17:46:35,240 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-08-25 17:46:36,731 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-08-25 17:46:36,879 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-08-25 17:47:28,369 - __main__ - INFO - Processing new user message: i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors
+
+minor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided
+2025-08-25 17:47:28,375 - __main__ - INFO - Initial state created
+2025-08-25 17:47:28,379 - __main__ - INFO - Initial state messages: 
+2025-08-25 17:47:28,385 - __main__ - INFO - JSON payload:
+{
+  "messages": [
+    {
+      "content": "i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors\n\nminor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": null,
+      "example": false
+    }
+  ]
+}
+2025-08-25 17:47:28,392 - __main__ - INFO - Invoking graph with initial state
+2025-08-25 17:47:28,410 - __main__ - INFO - Entering worker node
+2025-08-25 17:47:28,440 - __main__ - INFO - JSON payload:
+{
+  "messages": [
+    {
+      "content": "i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors\n\nminor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": "b73eca8a-a76c-4ecf-9022-0076a686ad40",
+      "example": false
+    }
+  ],
+  "success_criteria": "The assistant must obtain and confirm the following required flight details: departure city, arrival city, departure date, number of adults, number of children.Optional detail for flight booking is return date",
+  "feedback": null,
+  "success_criteria_met": false,
+  "user_input_needed": false,
+  "collected_details": {
+    "departure_city": "",
+    "arrival_city": "",
+    "outbound_date": "",
+    "adults": 0,
+    "children": 0,
+    "travel_class": "Economy",
+    "return_date": null
+  }
+}
+2025-08-25 17:47:28,445 - __main__ - INFO - Input state messages:
+2025-08-25 17:47:28,448 - __main__ - INFO - JSON payload:
+{
+  "messages": [
+    {
+      "content": "i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors\n\nminor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": "b73eca8a-a76c-4ecf-9022-0076a686ad40",
+      "example": false
+    }
+  ]
+}
+2025-08-25 17:47:28,451 - __main__ - INFO - Processing messages: 
+2025-08-25 17:47:28,454 - __main__ - INFO - JSON payload:
+{
+  "messages": [
+    {
+      "content": "i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors\n\nminor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": "b73eca8a-a76c-4ecf-9022-0076a686ad40",
+      "example": false
+    }
+  ]
+}
+2025-08-25 17:47:28,457 - __main__ - INFO - Adding new system message
+2025-08-25 17:47:28,459 - __main__ - INFO - Messages after system message handling: 
+2025-08-25 17:47:28,462 - __main__ - INFO - JSON payload:
+{
+  "messages": [
+    {
+      "content": "\n        You are a helpful travel assistant responsible for collecting flight booking details from the user. Your goal is to gather all required details and prompt for clarifications based on feedback from the evaluator. Follow this structured process:\n\n        Today's date is Monday, 2025-08-25.\n        current year is 2025.\n\n        1. **Required Fields to Collect** (in this order, unless already provided):\n        - Departure city: Name of the city the user is departing from.\n        - Arrival city: Name of the city the user is traveling to.\n        - Outbound date: The departure date, to be provided in YYYY-MM-DD format.\n        - Number of adults: Number of travelers aged 18+ years.\n        - Number of children: Number of travelers below 18 years.\n        - Travel class: One of [Economy, Premium Economy, Business, First Class].\n\n        2. **Optional Fields** (ask only after all required fields are provided):\n        - Ask: \"Would you like to specify a return date or any other preferences?\"\n        - Only collect return date (in YYYY-MM-DD format) if mentioned.\n        - If the user specifies preferences not in [return date], respond: \"I'm sorry, but I can only assist with specifying a return date as an optional preference. Please provide the return date if needed, or let me know if you want to proceed.\"\n\n        3. **Rules for Collecting Fields**:\n        - If the user provides ambiguous information (e.g., \"next Monday\" for date, \"me and my family\" for travelers), prompt for clarification:\n            - For dates: Ask for a specific date in YYYY-MM-DD format, parse it using current_date: 2025-08-25, current_day: Monday and current_year: 2025 as reference.\n            - For travelers: Ask for the age of each individual to determine adults (18+ years) and children (below 18 years).\n        - If the user refuses to provide a required field, respond: \"I'm sorry, but [field] is required to proceed. Please provide [field].\"\n        - Do not confirm or summarize the collected details until instructed by the evaluator that all required fields are valid.\n        - Do not validate whether departure or arrival cities have airports; this will be handled by an external API.\n\n        4. **Incorporating Feedback**:\n        - If feedback is provided from the evaluator, address the specific issues mentioned. For example:\n            - If a field is invalid (e.g., date in the past), prompt the user to clarify or correct the specific field.\n            - If a field is missing, ask for that field explicitly.\n        - Example feedback response: \"I noticed the provided departure date was invalid. Could you please provide the date in YYYY-MM-DD format, ensuring it's in the future?\"\n\n        5. **Response Format**:\n        - If details are missing or need clarification: \"Question: [your question]\"\n        - If a required field is refused: \"I'm sorry, but [field] is required to proceed. Please provide [field].\"\n        - If all required fields are collected and no feedback indicates issues: Wait for evaluator instructions. Do not generate a confirmation message prematurely.\n        - If feedback indicates an issue: \"Question: [specific clarification based on feedback]\"\n\n        6. **Default Response**:\n        - If unable to generate a specific response (e.g., unclear feedback or user input), use: \"Question: Could you please clarify or confirm the details provided? I need to ensure all information is correct before proceeding.\"\n    ",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "system",
+      "name": null,
+      "id": null
+    },
+    {
+      "content": "i am going to ahmedabad to pune on 31st augutst 2025, with 2 adult and 2 minors\n\nminor ages: 8 yo and one is 2 yo , i will prefer travelling in economy with no return date decided",
+      "additional_kwargs": {},
+      "response_metadata": {},
+      "type": "human",
+      "name": null,
+      "id": "b73eca8a-a76c-4ecf-9022-0076a686ad40",
+      "example": false
+    }
+  ]
+}
+2025-08-25 17:47:28,465 - __main__ - INFO - Invoking worker LLM
+2025-08-25 17:47:28,922 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 200
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+].
+2025-08-25 17:47:31,267 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 4.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 200
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+].
+2025-08-25 17:47:35,660 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 8.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 200
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+].
+2025-08-25 17:47:44,026 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 16.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 200
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+].
+2025-08-25 17:48:00,393 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 32.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 200
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+].
